@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Swatches */
+  --color-indigo-ink: #1F2A68;
+  --color-cloud: #F5F7FF;
+  --color-lilac-haze: #CBB8FF;
+  --color-sky-wash: #BFE3FF;
+  --color-peach-blush: #FFD9C7;
+  --color-safe-mint: #2BB673;
+  --color-amber-alert: #F5A524;
+  --color-signal-coral: #FF4D5E;
+
+  /* Surfaces & text in light mode */
+  --bg-page: #F5F7FF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F0F3FF;
+  --text-primary: #1F2A68;
+  --text-secondary: #4A5578;
+  --text-muted: #7E8BA8;
+  --border-light: rgba(31, 42, 104, 0.08);
+  --border-medium: rgba(31, 42, 104, 0.16);
+
+  /* In-Message Highlight Tokens */
+  --hl-urgency-bg: #FEF3C7;
+  --hl-urgency-border: #D97706;
+  --hl-urgency-text: #92400E;
+
+  --hl-threat-bg: #FFEDD5;
+  --hl-threat-border: #EA580C;
+  --hl-threat-text: #9A3412;
+
+  --hl-link-bg: #FCE7F3;
+  --hl-link-border: #DB2777;
+  --hl-link-text: #9D174D;
+
+  --hl-otp-bg: #FEE2E2;
+  --hl-otp-border: #DC2626;
+  --hl-otp-text: #991B1B;
+
+  --hl-money-bg: #DBEAFE;
+  --hl-money-border: #2563EB;
+  --hl-money-text: #1E40AF;
+
+  --hl-greeting-bg: #EDE9FE;
+  --hl-greeting-border: #7C3AED;
+  --hl-greeting-text: #5B21B6;
+
+  --hl-good-bg: #D1FAE5;
+  --hl-good-border: #059669;
+  --hl-good-text: #065F46;
+}
+
+.dark {
+  --bg-page: #0C1021;
+  --bg-surface: #141933;
+  --bg-surface-subtle: #1C2344;
+  --text-primary: #F0F3FF;
+  --text-secondary: #B9C4E0;
+  --text-muted: #7E8BA8;
+  --border-light: rgba(203, 184, 255, 0.12);
+  --border-medium: rgba(203, 184, 255, 0.22);
+
+  /* Dark mode highlights: slightly deeper backgrounds for contrast */
+  --hl-urgency-bg: rgba(217, 119, 6, 0.25);
+  --hl-urgency-border: #F59E0B;
+  --hl-urgency-text: #FDE68A;
+
+  --hl-threat-bg: rgba(234, 88, 12, 0.25);
+  --hl-threat-border: #FB923C;
+  --hl-threat-text: #FED7AA;
+
+  --hl-link-bg: rgba(219, 39, 119, 0.25);
+  --hl-link-border: #F472B6;
+  --hl-link-text: #FBCFE8;
+
+  --hl-otp-bg: rgba(220, 38, 38, 0.25);
+  --hl-otp-border: #F87171;
+  --hl-otp-text: #FECACA;
+
+  --hl-money-bg: rgba(37, 99, 235, 0.25);
+  --hl-money-border: #60A5FA;
+  --hl-money-text: #BFDBFE;
+
+  --hl-greeting-bg: rgba(124, 58, 237, 0.25);
+  --hl-greeting-border: #A78BFA;
+  --hl-greeting-text: #DDD6FE;
+
+  --hl-good-bg: rgba(5, 150, 105, 0.25);
+  --hl-good-border: #34D399;
+  --hl-good-text: #A7F3D0;
+}
+
+/* Background mesh gradients */
+.mesh-gradient-hero {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(203, 184, 255, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(191, 227, 255, 0.5) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 217, 199, 0.4) 0%, transparent 45%),
+    var(--bg-page);
+}
+
+.mesh-gradient-cta {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(203, 184, 255, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(191, 227, 255, 0.65) 0%, transparent 50%),
+    radial-gradient(circle at 50% 20%, rgba(255, 217, 199, 0.4) 0%, transparent 40%),
+    #1F2A68;
+}
+
+/* Grain overlay using SVG micro-data */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Accessible focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-indigo-ink);
+  outline-offset: 2px;
+}
+.dark *:focus-visible {
+  outline: 2px solid var(--color-lilac-haze);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
